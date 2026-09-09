@@ -16,8 +16,11 @@ import numpy as np
 # Configure JAX for 64-bit precision for better numerical stability
 jax.config.update("jax_enable_x64", True)
 
-# Pre-computed value of zeta(1.1340) which appears in the DP-SPRT methods
-ZETA_S_VALUE = 5.591
+# zeta(1.1340), the value paired with s = 1.1340 in the correction function.
+# This was 5.591, which is zeta(1.2000), so the union bound over n in the
+# correctness proof spent 1.44 delta instead of delta. Correcting it lengthens
+# mean stopping times by about 4 percent.
+ZETA_S_VALUE = 8.049572
 
 
 @jit
